@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>MAUREENS-APP Spezial Edition</title>
+  <style>
+    :root {
+      --gold-grad: linear-gradient(135deg, #fff5b8 0%, #f59e0b 48%, #b45309 100%);
+      --silver-grad: linear-gradient(135deg, #ffffff 0%, #cbd5e1 52%, #64748b 100%);
+      --glass: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.26);
+      --text: #f8fafc;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+    body {
+      margin: 0; padding: 0 0 110px;
+      background: radial-gradient(circle at 18% 8%, #1a3b7a 0%, #091633 48%, #030712 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      font-size: 13px; overflow-x: hidden; min-height: 100vh;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -150% 0; }
+      100% { background-position: 150% 0; }
+    }
+    .tap { transition: transform 0.13s ease, filter 0.13s ease; cursor: pointer; }
+    .tap:active { transform: scale(0.95); filter: brightness(1.16); }
+
+    .btn-gold {
+      background: var(--gold-grad); color: #1a0f00; font-weight: 800;
+      border: 1px solid rgba(255, 250, 210, 0.8);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    }
+    .btn-silver {
+      background: var(--silver-grad); color: #091124; font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    /* APPLE GLASS HEADER MIT GOLD-STICKER & SILBER-SIGNATUR */
+    header {
+      padding: calc(env(safe-area-inset-top, 8px) + 8px) 11px 9px;
+      background: rgba(6, 15, 36, 0.84);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 30;
+      display: flex; justify-content: space-between; align-items: center; gap: 6px;
+    }
+    .brand-wrap { display: flex; flex-direction: column; min-width: 0; }
+    .title-line { display: flex; align-items: baseline; gap: 4px; flex-wrap: nowrap; }
+    .sticker-maureen {
+      display: inline-block;
+      background: linear-gradient(120deg, #fef08a 0%, #f59e0b 35%, #fffbeb 50%, #d97706 70%, #fef08a 100%);
+      background-size: 200% auto; animation: shimmer 4.2s linear infinite;
+      color: #1c1100; font-weight: 900; font-size: 16px; letter-spacing: 0.03em;
+      padding: 2px 8px; border-radius: 7px; transform: rotate(-1.6deg);
+      border: 1px solid #ffffff;
+      box-shadow: 0 3px 12px rgba(245, 158, 11, 0.6), inset 0 1px 1px #fff;
+    }
+    .sub-app { font-size: 11px; font-weight: 800; color: #fde68a; white-space: nowrap; }
+    .sig-silver {
+      margin-top: 3px; font-size: 10px; font-weight: 700; letter-spacing: 0.03em;
+      background: linear-gradient(90deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .head-btns { display: flex; gap: 4px; flex-shrink: 0; }
+    .pill-mini {
+      height: 28px; padding: 0 8px; border-radius: 9px; font-size: 10px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 3px;
+    }
+
+    .dots { display: flex; justify-content: center; gap: 5px; padding: 6px 0 2px; }
+    .dot { width: 16px; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.22); transition: all 0.2s; }
+    .dot.active { width: 28px; background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+
+    main { padding: 5px 10px; min-height: 74vh; touch-action: pan-y; }
+    .panel { display: none; animation: fadeSlide 0.18s ease-out; }
+    .panel.active { display: block; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
+
+    .sec-lbl {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+      color: #e2e8f0; margin: 5px 0 5px;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-light);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      border-radius: 14px; padding: 8px; margin-bottom: 8px;
+    }
+
+    /* GRID & METALLIC TASTEN */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 8px; }
+    .metal-tile {
+      border-radius: 12px; padding: 7px 6px; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px;
+      min-height: 50px;
+    }
+    .metal-tile .ico { font-size: 15px; }
+    .metal-tile .lbl { font-size: 11px; font-weight: 900; line-height: 1.15; }
+    .metal-tile .sub { font-size: 9px; font-weight: 700; opacity: 0.8; }
+
+    /* VIP GUTSCHEINE */
+    .v-card {
+      background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(253, 224, 71, 0.35);
+      border-radius: 12px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .v-card h4 { margin: 0 0 2px; font-size: 11px; color: #fef08a; }
+    .v-card p { margin: 0 0 6px; font-size: 10px; color: #e2e8f0; line-height: 1.25; }
+    .v-btn { width: 100%; height: 25px; border-radius: 8px; font-size: 10px; }
+
+    /* 2/3 DISPLAY FÜR YOUTUBE & PODCAST AUF SEITE 3 */
+    .media-split {
+      display: grid; grid-template-columns: 2fr 1fr; gap: 6px; align-items: stretch;
+    }
+    .yt-mini {
+      position: relative; height: 118px; border-radius: 11px; overflow: hidden;
+      background: linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,58,138,0.75));
+      border: 1px solid rgba(253, 224, 71, 0.5);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7px;
+    }
+    .yt-mini iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .yt-mini .t { font-size: 11px; font-weight: 900; color: #fef08a; margin-bottom: 2px; }
+    .yt-mini .s { font-size: 9px; color: #cbd5e1; margin-bottom: 6px; }
+    .side-stack { display: flex; flex-direction: column; gap: 6px; justify-content: space-between; }
+    .side-stack .metal-tile { min-height: 0; flex: 1; padding: 5px; }
+
+    /* INPUTS & LISTEN */
+    .in-row { display: flex; gap: 5px; margin-bottom: 6px; }
+    input[type="text"], input[type="number"] {
+      background: rgba(3, 8, 20, 0.78); border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 9px; height: 31px; padding: 0 8px; color: #fff; font-size: 12px; outline: none; user-select: text;
+    }
+    input[type="text"] { flex: 1; min-width: 0; }
+    input[type="number"] { width: 56px; }
+    .sq-btn { height: 31px; padding: 0 10px; border-radius: 9px; font-size: 13px; }
+    .list-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 6px;
+      padding: 5px 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 9px; margin-bottom: 4px; font-size: 11px;
+    }
+
+    /* RADIO LISTE */
+    .radio-btn {
+      width: 100%; padding: 9px 11px; border-radius: 11px; margin-bottom: 6px;
+      display: flex; justify-content: space-between; align-items: center; text-align: left;
+    }
+    .radio-btn.on { outline: 2px solid #ffffff; box-shadow: 0 0 14px rgba(250, 204, 21, 0.75); }
+
+    /* GOLD-GLAS SCHLITTEN UNTEN */
+    .sled {
+      position: fixed; left: 8px; right: 8px; bottom: 53px;
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.96) 0%, rgba(245, 158, 11, 0.96) 100%);
+      color: #1a0f00; border: 1px solid #ffffff; border-radius: 13px; padding: 7px 11px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 1px #ffffff; z-index: 35;
+    }
+    .sled-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 900; cursor: pointer; }
+    .sled-body { display: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(26, 15, 0, 0.2); font-size: 11px; line-height: 1.38; font-weight: 700; }
+    .sled.open .sled-body { display: block; }
+    .love-sign {
+      display: inline-block; margin-top: 4px; background: #071126; color: #fde047;
+      padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 800;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 47px;
+      background: rgba(6, 14, 32, 0.93); backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-light);
+      display: grid; grid-template-columns: repeat(4, 1fr); z-index: 40;
+    }
+    .nav-item {
+      background: none; border: none; color: #94a3b8;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 800; gap: 1px; cursor: pointer;
+    }
+    .nav-item span.i { font-size: 15px; }
+    .nav-item.active { color: #fde047; text-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-wrap">
+      <div class="title-line">
+        <span class="sticker-maureen">MAUREENS</span>
+        <span class="sub-app">-APP • Spezial Edition</span>
+      </div>
+      <div class="sig-silver">Sven Thevissen • APP-dafür © 2026</div>
+    </div>
+    <div class="head-btns">
+      <button class="pill-mini btn-gold tap" id="beatBtn" onclick="toggleBeat()">▶️ 90s</button>
