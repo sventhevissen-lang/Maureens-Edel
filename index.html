@@ -7,195 +7,158 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>MAUREENS-APP Spezial Edition</title>
   <style>
-    :root {
-      --gold-grad: linear-gradient(135deg, #fff5b8 0%, #f59e0b 48%, #b45309 100%);
-      --silver-grad: linear-gradient(135deg, #ffffff 0%, #cbd5e1 52%, #64748b 100%);
-      --glass: rgba(255, 255, 255, 0.08);
-      --border-light: rgba(255, 255, 255, 0.26);
-      --text: #f8fafc;
-    }
+    :root { --gold-grad: linear-gradient(135deg, #fff5b8 0%, #f59e0b 48%, #b45309 100%); --silver-grad: linear-gradient(135deg, #ffffff 0%, #cbd5e1 52%, #64748b 100%); --glass: rgba(255, 255, 255, 0.08); --border-light: rgba(255, 255, 255, 0.26); --text: #f8fafc; }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
-    body {
-      margin: 0; padding: 0 0 110px;
-      background: radial-gradient(circle at 18% 8%, #1a3b7a 0%, #091633 48%, #030712 100%);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      font-size: 13px; overflow-x: hidden; min-height: 100vh;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -150% 0; }
-      100% { background-position: 150% 0; }
-    }
+    body { margin: 0; padding: 0 0 112px; background: radial-gradient(circle at 18% 8%, #1a3b7a 0%, #091633 48%, #030712 100%); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; font-size: 13px; overflow-x: hidden; min-height: 100vh; }
+    @keyframes shimmer { 0% { background-position: -150% 0; } 100% { background-position: 150% 0; } }
+    @keyframes pulseMic { 0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); } }
+    @keyframes eqDance { 0%,100% { height: 4px; } 50% { height: 13px; } }
     .tap { transition: transform 0.13s ease, filter 0.13s ease; cursor: pointer; }
     .tap:active { transform: scale(0.95); filter: brightness(1.16); }
-
-    .btn-gold {
-      background: var(--gold-grad); color: #1a0f00; font-weight: 800;
-      border: 1px solid rgba(255, 250, 210, 0.8);
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-    }
-    .btn-silver {
-      background: var(--silver-grad); color: #091124; font-weight: 800;
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.95);
-    }
-
-    /* APPLE GLASS HEADER MIT GOLD-STICKER & SILBER-SIGNATUR */
-    header {
-      padding: calc(env(safe-area-inset-top, 8px) + 8px) 11px 9px;
-      background: rgba(6, 15, 36, 0.84);
-      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky; top: 0; z-index: 30;
-      display: flex; justify-content: space-between; align-items: center; gap: 6px;
-    }
+    .btn-gold { background: var(--gold-grad); color: #1a0f00; font-weight: 800; border: 1px solid rgba(255, 250, 210, 0.85); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.9); }
+    .btn-silver { background: var(--silver-grad); color: #091124; font-weight: 800; border: 1px solid rgba(255, 255, 255, 0.88); box-shadow: 0 4px 12px rgba(148, 163, 184, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.95); }
+    header { padding: calc(env(safe-area-inset-top, 8px) + 8px) 9px 9px; background: rgba(6, 15, 36, 0.86); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border-light); position: sticky; top: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; gap: 5px; }
     .brand-wrap { display: flex; flex-direction: column; min-width: 0; }
     .title-line { display: flex; align-items: baseline; gap: 4px; flex-wrap: nowrap; }
-    .sticker-maureen {
-      display: inline-block;
-      background: linear-gradient(120deg, #fef08a 0%, #f59e0b 35%, #fffbeb 50%, #d97706 70%, #fef08a 100%);
-      background-size: 200% auto; animation: shimmer 4.2s linear infinite;
-      color: #1c1100; font-weight: 900; font-size: 16px; letter-spacing: 0.03em;
-      padding: 2px 8px; border-radius: 7px; transform: rotate(-1.6deg);
-      border: 1px solid #ffffff;
-      box-shadow: 0 3px 12px rgba(245, 158, 11, 0.6), inset 0 1px 1px #fff;
-    }
-    .sub-app { font-size: 11px; font-weight: 800; color: #fde68a; white-space: nowrap; }
-    .sig-silver {
-      margin-top: 3px; font-size: 10px; font-weight: 700; letter-spacing: 0.03em;
-      background: linear-gradient(90deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
+    .sticker-maureen { display: inline-block; background: linear-gradient(120deg, #fef08a 0%, #f59e0b 35%, #fffbeb 50%, #d97706 70%, #fef08a 100%); background-size: 200% auto; animation: shimmer 4.2s linear infinite; color: #1c1100; font-weight: 900; font-size: 15px; letter-spacing: 0.03em; padding: 2px 7px; border-radius: 7px; transform: rotate(-1.6deg); border: 1px solid #ffffff; box-shadow: 0 3px 12px rgba(245, 158, 11, 0.6), inset 0 1px 1px #fff; }
+    .sub-app { font-size: 10px; font-weight: 800; color: #fde68a; white-space: nowrap; }
+    .sig-silver { margin-top: 3px; font-size: 9.5px; font-weight: 700; letter-spacing: 0.02em; background: linear-gradient(90deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .mid-widget { padding: 3px 7px; border-radius: 9px; background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(253, 224, 71, 0.5); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25); display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+    .eq-bars { display: flex; align-items: flex-end; gap: 2px; height: 13px; }
+    .eq-bars span { width: 2.5px; height: 4px; background: #fbbf24; border-radius: 2px; }
+    .eq-bars.on span:nth-child(1) { animation: eqDance 0.45s infinite; }
+    .eq-bars.on span:nth-child(2) { animation: eqDance 0.32s infinite 0.1s; }
+    .eq-bars.on span:nth-child(3) { animation: eqDance 0.52s infinite 0.2s; }
     .head-btns { display: flex; gap: 4px; flex-shrink: 0; }
-    .pill-mini {
-      height: 28px; padding: 0 8px; border-radius: 9px; font-size: 10px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 3px;
-    }
-
-    .dots { display: flex; justify-content: center; gap: 5px; padding: 6px 0 2px; }
-    .dot { width: 16px; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.22); transition: all 0.2s; }
-    .dot.active { width: 28px; background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
-
-    main { padding: 5px 10px; min-height: 74vh; touch-action: pan-y; }
+    .pill-mini { height: 28px; padding: 0 7px; border-radius: 9px; font-size: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 3px; }
+    .dots { display: flex; justify-content: center; gap: 6px; padding: 6px 0 2px; }
+    .dot { width: 18px; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.22); transition: all 0.2s; cursor: pointer; }
+    .dot.active { width: 32px; background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+    main { padding: 4px 10px; min-height: 75vh; touch-action: pan-y; }
     .panel { display: none; animation: fadeSlide 0.18s ease-out; }
     .panel.active { display: block; }
     @keyframes fadeSlide { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
-
-    .sec-lbl {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
-      color: #e2e8f0; margin: 5px 0 5px;
-    }
-
-    .glass-card {
-      background: var(--glass);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-light);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-      border-radius: 14px; padding: 8px; margin-bottom: 8px;
-    }
-
-    /* GRID & METALLIC TASTEN */
+    .sec-lbl { display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #e2e8f0; margin: 5px 0 5px; }
+    .glass-card { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25); border-radius: 14px; padding: 8px; margin-bottom: 8px; }
+    .search-bar { display: flex; gap: 5px; align-items: center; }
+    .search-bar input { flex: 1; min-width: 0; height: 34px; border-radius: 10px; padding: 0 10px; background: rgba(3, 8, 20, 0.82); border: 1px solid rgba(255,255,255,0.28); color: #fff; font-size: 12px; outline: none; user-select: text; }
+    .mic-on { background: #ef4444 !important; color: #fff !important; animation: pulseMic 1.1s infinite; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-bottom: 8px; }
-    .metal-tile {
-      border-radius: 12px; padding: 7px 6px; text-decoration: none;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px;
-      min-height: 50px;
-    }
-    .metal-tile .ico { font-size: 15px; }
-    .metal-tile .lbl { font-size: 11px; font-weight: 900; line-height: 1.15; }
-    .metal-tile .sub { font-size: 9px; font-weight: 700; opacity: 0.8; }
-
-    /* VIP GUTSCHEINE */
-    .v-card {
-      background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(253, 224, 71, 0.35);
-      border-radius: 12px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between;
-    }
+    .metal-tile { border-radius: 12px; padding: 6px 4px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; min-height: 46px; }
+    .metal-tile svg { width: 22px; height: 22px; display: block; margin: 0 auto; }
+    .metal-tile .ico { font-size: 14px; }
+    .metal-tile .lbl { font-size: 10.5px; font-weight: 900; line-height: 1.1; }
+    .metal-tile .sub { font-size: 8px; font-weight: 800; opacity: 0.85; letter-spacing: 0.03em; text-transform: uppercase; }
+    .tv-screen { position: relative; width: 100%; height: 156px; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, rgba(10,20,45,0.95), rgba(30,58,138,0.8)); border: 1px solid rgba(253, 224, 71, 0.55); box-shadow: inset 0 0 22px rgba(245, 158, 11, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px; }
+    .tv-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .tv-tabs { display: flex; gap: 5px; margin-top: 6px; }
+    .tv-tabs button { flex: 1; height: 27px; border-radius: 8px; font-size: 10px; }
+    .v-card { background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(253, 224, 71, 0.35); border-radius: 12px; padding: 7px; display: flex; flex-direction: column; justify-content: space-between; }
     .v-card h4 { margin: 0 0 2px; font-size: 11px; color: #fef08a; }
-    .v-card p { margin: 0 0 6px; font-size: 10px; color: #e2e8f0; line-height: 1.25; }
-    .v-btn { width: 100%; height: 25px; border-radius: 8px; font-size: 10px; }
-
-    /* 2/3 DISPLAY FÜR YOUTUBE & PODCAST AUF SEITE 3 */
-    .media-split {
-      display: grid; grid-template-columns: 2fr 1fr; gap: 6px; align-items: stretch;
-    }
-    .yt-mini {
-      position: relative; height: 118px; border-radius: 11px; overflow: hidden;
-      background: linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,58,138,0.75));
-      border: 1px solid rgba(253, 224, 71, 0.5);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7px;
-    }
+    .v-card p { margin: 0 0 5px; font-size: 9.5px; color: #e2e8f0; line-height: 1.25; }
+    .v-btn { width: 100%; height: 25px; border-radius: 8px; font-size: 9.5px; }
+    .media-split { display: grid; grid-template-columns: 2fr 1fr; gap: 6px; align-items: stretch; }
+    .yt-mini { position: relative; height: 118px; border-radius: 11px; overflow: hidden; background: linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,58,138,0.75)); border: 1px solid rgba(253, 224, 71, 0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7px; }
     .yt-mini iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .yt-mini .t { font-size: 11px; font-weight: 900; color: #fef08a; margin-bottom: 2px; }
-    .yt-mini .s { font-size: 9px; color: #cbd5e1; margin-bottom: 6px; }
-    .side-stack { display: flex; flex-direction: column; gap: 6px; justify-content: space-between; }
+    .side-stack { display: flex; flex-direction: column; gap: 6px; }
     .side-stack .metal-tile { min-height: 0; flex: 1; padding: 5px; }
-
-    /* INPUTS & LISTEN */
     .in-row { display: flex; gap: 5px; margin-bottom: 6px; }
-    input[type="text"], input[type="number"] {
-      background: rgba(3, 8, 20, 0.78); border: 1px solid rgba(255,255,255,0.24);
-      border-radius: 9px; height: 31px; padding: 0 8px; color: #fff; font-size: 12px; outline: none; user-select: text;
-    }
+    input[type="text"], input[type="number"] { background: rgba(3, 8, 20, 0.78); border: 1px solid rgba(255,255,255,0.24); border-radius: 9px; height: 31px; padding: 0 8px; color: #fff; font-size: 12px; outline: none; user-select: text; }
     input[type="text"] { flex: 1; min-width: 0; }
-    input[type="number"] { width: 56px; }
+    input[type="number"] { width: 52px; }
     .sq-btn { height: 31px; padding: 0 10px; border-radius: 9px; font-size: 13px; }
-    .list-row {
-      display: flex; justify-content: space-between; align-items: center; gap: 6px;
-      padding: 5px 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 9px; margin-bottom: 4px; font-size: 11px;
-    }
-
-    /* RADIO LISTE */
-    .radio-btn {
-      width: 100%; padding: 9px 11px; border-radius: 11px; margin-bottom: 6px;
-      display: flex; justify-content: space-between; align-items: center; text-align: left;
-    }
+    .list-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; padding: 5px 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 9px; margin-bottom: 4px; font-size: 11px; }
+    .radio-btn { width: 100%; padding: 9px 11px; border-radius: 11px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
     .radio-btn.on { outline: 2px solid #ffffff; box-shadow: 0 0 14px rgba(250, 204, 21, 0.75); }
-
-    /* GOLD-GLAS SCHLITTEN UNTEN */
-    .sled {
-      position: fixed; left: 8px; right: 8px; bottom: 53px;
-      background: linear-gradient(135deg, rgba(254, 240, 138, 0.96) 0%, rgba(245, 158, 11, 0.96) 100%);
-      color: #1a0f00; border: 1px solid #ffffff; border-radius: 13px; padding: 7px 11px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 1px #ffffff; z-index: 35;
-    }
+    .sled { position: fixed; left: 8px; right: 8px; bottom: 53px; background: linear-gradient(135deg, rgba(254, 240, 138, 0.96) 0%, rgba(245, 158, 11, 0.96) 100%); color: #1a0f00; border: 1px solid #ffffff; border-radius: 13px; padding: 7px 11px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 1px #ffffff; z-index: 35; }
     .sled-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 900; cursor: pointer; }
     .sled-body { display: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(26, 15, 0, 0.2); font-size: 11px; line-height: 1.38; font-weight: 700; }
-    .sled.open .sled-body { display: block; }
-    .love-sign {
-      display: inline-block; margin-top: 4px; background: #071126; color: #fde047;
-      padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 800;
-    }
 
-    /* NAVIGATION */
-    nav {
-      position: fixed; bottom: 0; left: 0; right: 0; height: 47px;
-      background: rgba(6, 14, 32, 0.93); backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border-light);
-      display: grid; grid-template-columns: repeat(4, 1fr); z-index: 40;
-    }
-    .nav-item {
-      background: none; border: none; color: #94a3b8;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 800; gap: 1px; cursor: pointer;
-    }
+    nav { position: fixed; bottom: 0; left: 0; right: 0; height: 47px; background: rgba(6, 14, 32, 0.93); backdrop-filter: blur(16px); border-top: 1px solid var(--border-light); display: grid; grid-template-columns: repeat(3, 1fr); z-index: 40; }
+    .nav-item { background: none; border: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; gap: 1px; cursor: pointer; }
     .nav-item span.i { font-size: 15px; }
     .nav-item.active { color: #fde047; text-shadow: 0 0 8px rgba(253, 224, 71, 0.6); }
   </style>
 </head>
-<body>
-
+<body onclick="autoStartBeat()">
   <header>
     <div class="brand-wrap">
-      <div class="title-line">
-        <span class="sticker-maureen">MAUREENS</span>
-        <span class="sub-app">-APP • Spezial Edition</span>
-      </div>
+      <div class="title-line"><span class="sticker-maureen">MAUREENS</span><span class="sub-app">-APP • Spezial Edition</span></div>
       <div class="sig-silver">Sven Thevissen • APP-dafür © 2026</div>
     </div>
-    <div class="head-btns">
-      <button class="pill-mini btn-gold tap" id="beatBtn" onclick="toggleBeat()">▶️   90s</button>
+    <div class="mid-widget tap" onclick="event.stopPropagation();document.getElementById('goldSled').classList.toggle('open')">
+      <div class="eq-bars" id="eqBars"><span></span><span></span><span></span></div>
+      <div style="text-align:center;line-height:1.1;"><div style="font-size:10px;font-weight:900;color:#fef08a;" id="clkTime">--:--</div><div style="font-size:8px;font-weight:700;color:#cbd5e1;" id="clkDate">❤️ VIP</div></div>
+    </div>
+    <div class="head-btns"><button class="pill-mini btn-gold tap" id="beatBtn" onclick="event.stopPropagation();toggleBeat()">▶️ 90s</button></div>
+  </header>
+  <div class="dots"><div class="dot active" onclick="goTab(0)"></div><div class="dot" onclick="goTab(1)"></div><div class="dot" onclick="goTab(2)"></div></div>
+  <main id="swipeArea">
+    <section class="panel active" id="p0">
+      <div class="glass-card" style="padding:6px;"><div class="search-bar"><input type="text" id="qInput" placeholder="Suche oder Mikro tippen..." onkeydown="if(event.key==='Enter')doSearch()" /><button class="pill-mini btn-silver tap" id="micBtn" onclick="startVoice()">🎤</button><button class="pill-mini btn-gold tap" onclick="doSearch()">🔍</button></div></div>
+      <div class="grid-3">
+        <a class="metal-tile btn-gold tap" href="https://amazon.de" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 18.5c-2.6 1.9-6.4 2.9-9.7 2.9-4.6 0-8.7-1.7-11.8-4.5-.3-.2 0-.6.3-.4 3.4 2 7.6 3.2 11.9 3.2 2.9 0 6.1-.6 9.1-1.9.4-.2.8.3.2.7zm1.1-1.3c-.3-.4-2.2-.2-3-.1-.3 0-.3-.2-.1-.4 1.5-1 3.9-.7 4.2-.4.3.4-.1 2.8-1.5 3.9-.2.2-.4.1-.3-.2.3-.8 1-2.5.7-2.8z"/><text x="7.5" y="14" font-family="Arial Black,sans-serif" font-weight="900" font-size="14">a</text></svg><span class="sub">Shop</span></a>
+        <a class="metal-tile btn-silver tap" href="https://amazon.de/Prime-Video/b?node=3010075031" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,4 19,11 8,18"/><path d="M4 19.5c5 2.5 11 2.5 16 0" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg><span class="sub">Prime</span></a>
+        <a class="metal-tile btn-gold tap" href="https://otto.de" target="_blank"><svg viewBox="0 0 40 20" fill="currentColor"><text x="20" y="15" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="12.5">OTTO</text></svg><span class="sub">Versand</span></a>
+        <a class="metal-tile btn-silver tap" href="https://whatsapp.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.5-.2-1.1-.4-1.9-.7-3.3-1.4-5.4-4.7-5.6-4.9-.2-.2-1.3-1.8-1.3-3.4s.8-2.4 1.1-2.7c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.8.6.3.7 1 2.4 1.1 2.6.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.5.6-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.2-.4.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.4.1.2.1.8-.1 1.5z"/></svg><span class="sub">Chat</span></a>
+        <a class="metal-tile btn-gold tap" href="https://kleinanzeigen.de" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9.2 7.2v9.6M9.2 12l5.3-4.8M11 10.6L14.8 16.8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><span class="sub">Deals</span></a>
+        <a class="metal-tile btn-silver tap" href="https://vinted.de" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 5h3.2l2.6 10.2L15.4 5h3.1l-4.6 14h-3.4L6.5 5z"/></svg><span class="sub">Vinted</span></a>
+      </div>
+      <div class="sec-lbl"><span>📺 Multimedia-Display • TV & Videos</span><span>GOLD EDITION</span></div>
+      <div class="glass-card" style="padding:7px;">
+        <div class="tv-screen" id="mainScreen"><div style="font-size:13px;font-weight:900;color:#fef08a;margin-bottom:3px;">🔥 MARKY MARK & 90s VIBES</div><div style="font-size:10px;color:#e2e8f0;margin-bottom:8px;">Tippe unten auf YouTube, TV oder Musikvideo zum Starten</div><button class="pill-mini btn-gold tap" onclick="setScreen('yt')">▶️ YouTube Video starten</button></div>
+        <div class="tv-tabs"><button class="btn-gold tap" onclick="setScreen('yt')">▶️ YouTube</button><button class="btn-silver tap" onclick="setScreen('tv')">📡 Live-TV</button><button class="btn-gold tap" onclick="setScreen('mv')">🎵 90s Video</button></div>
+      </div>
+    </section>
+    <section class="panel" id="p1">
+      <div class="sec-lbl"><span>👑 VIP-Gutscheine</span><span>NEU ALLE 14 TAGE</span></div>
+      <div class="grid-2" id="voucherGrid"></div>
+      <div class="sec-lbl"><span>🔥 Beste Rabatte & Deals</span><span>LIVE-PORTALE</span></div>
+      <div class="grid-3">
+        <a class="metal-tile btn-gold tap" href="https://mydealz.de" target="_blank"><span class="ico">🔥</span><span class="lbl">mydealz</span></a>
+        <a class="metal-tile btn-silver tap" href="https://amazon.de/deals" target="_blank"><span class="ico">⚡</span><span class="lbl">Amazon %</span></a>
+        <a class="metal-tile btn-gold tap" href="https://otto.de/sale/" target="_blank"><span class="ico">🏷️</span><span class="lbl">OTTO Sale</span></a>
+        <a class="metal-tile btn-silver tap" href="https://shoop.de" target="_blank"><span class="ico">💸</span><span class="lbl">Shoop</span></a>
+        <a class="metal-tile btn-gold tap" href="https://idealo.de" target="_blank"><span class="ico">📉</span><span class="lbl">Idealo</span></a>
+        <a class="metal-tile btn-silver tap" href="https://groupon.de" target="_blank"><span class="ico">🎟️</span><span class="lbl">Groupon</span></a>
+      </div>
+      <div class="sec-lbl"><span>📝 Wunsch- & Merkliste</span><span>GESPEICHERT</span></div>
+      <div class="glass-card"><div class="in-row"><input type="text" id="itemTxt" placeholder="Wunsch eintragen..." /><input type="number" id="itemQty" value="1" min="1" /><button class="sq-btn btn-gold tap" onclick="addItem()">+</button></div><div id="listBox"></div></div>
+    </section>
+    <section class="panel" id="p2">
+      <div class="sec-lbl"><span>🎬 YouTube & Podcast</span><span>2/3 DISPLAY</span></div>
+      <div class="glass-card"><div class="media-split"><div class="yt-mini" id="ytBox"><div style="font-size:11px;font-weight:900;color:#fef08a;">Chill & Talk Mix</div><div style="font-size:9px;color:#cbd5e1;margin:3px 0 6px;">Mini-Player starten</div><button class="pill-mini btn-gold tap" onclick="document.getElementById('ytBox').innerHTML='<iframe src=\'https://youtube.com\' allow=\'autoplay\' allowfullscreen></iframe>'">▶️ Start</button></div><div class="side-stack"><a class="metal-tile btn-silver tap" href="https://youtube.com" target="_blank"><span class="ico">🎙️</span><span class="lbl">Podcast</span></a><a class="metal-tile btn-gold tap" href="https://ardmediathek.de" target="_blank"><span class="ico">📺</span><span class="lbl">Mediathek</span></a></div></div></div>
+      <div class="sec-lbl"><span>📻 Live-Radio</span><span>STREAM</span></div>
+      <div class="glass-card"><button class="radio-btn btn-gold tap" onclick="playRadio(this,'https://ilovemusic.de')"><span>✨ 90s & Throwback Hits</span><span>▶️</span></button><button class="radio-btn btn-silver tap" onclick="playRadio(this,'https://ilovemusic.de')"><span>🔥 Top Charts Radio</span><span>▶️</span></button><button class="radio-btn btn-gold tap" onclick="playRadio(this,'https://ilovemusic.de')"><span>💃 Dance & Party</span><span>▶️</span></button><audio id="radioAudio"></audio></div>
+    </section>
+  </main>
+  <div class="sled" id="goldSled"><div class="sled-top" onclick="document.getElementById('goldSled').classList.toggle('open')"><span>✨ Spezial-Botschaft für Maureen</span><span>▲ / ▼</span></div><div class="sled-body">Für die beste Frau der Welt – dein eigenes Multimedia-Schlachtschiff mit allem, was du liebst.<br><span class="love-sign">In Liebe • Sven Thevissen © 2026</span></div></div>
+  <nav><button class="nav-item active" onclick="goTab(0)"><span class="i">🚀</span><span>Start</span></button><button class="nav-item" onclick="goTab(1)"><span class="i">👑</span><span>VIP & Deals</span></button><button class="nav-item" onclick="goTab(2)"><span class="i">📻</span><span>TV & Radio</span></button></nav>
+  <script>
+    let cur = 0, beatOn = false, firstTapDone = false, audioCtx = null, beatTimer = null, step = 0;
+    function updateClock() { const d = new Date(); document.getElementById('clkTime').textContent = d.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'}); document.getElementById('clkDate').textContent = '❤️ ' + d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'}); }
+    updateClock(); setInterval(updateClock, 10000);
+
+    function goTab(i) { cur = i; document.querySelectorAll('.panel').forEach((p, idx) => p.classList.toggle('active', idx === i)); document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === i)); document.querySelectorAll('.nav-item').forEach((n, idx) => n.classList.toggle('active', idx === i)); }
+    let sx = 0;
+    document.getElementById('swipeArea').addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+    document.getElementById('swipeArea').addEventListener('touchend', e => { let dx = e.changedTouches[0].clientX - sx; if (dx < -50 && cur < 2) goTab(cur + 1); if (dx > 50 && cur > 0) goTab(cur - 1); });
+    function doSearch() { const q = document.getElementById('qInput').value.trim(); if (!q) return; window.open('https://google.com' + encodeURIComponent(q), '_blank'); }
+    function startVoice() { const SR = window.SpeechRecognition || window.webkitSpeechRecognition; if (!SR) { alert('Spracheingabe wird von diesem Browser nicht unterstützt.'); return; } const rec = new SR(); rec.lang = 'de-DE'; const btn = document.getElementById('micBtn'); btn.classList.add('mic-on'); rec.onresult = e => { document.getElementById('qInput').value = e.results[0][0].transcript; btn.classList.remove('mic-on'); doSearch(); }; rec.onerror = rec.onend = () => btn.classList.remove('mic-on'); rec.start(); }
+    function setScreen(mode) { const box = document.getElementById('mainScreen'); if (mode === 'yt') { box.innerHTML = '<iframe src="https://youtube.com" allow="autoplay; encrypted-media" allowfullscreen></iframe>'; } else if (mode === 'mv') { box.innerHTML = '<iframe src="https://youtube.com" allow="autoplay; encrypted-media" allowfullscreen></iframe>'; } else { box.innerHTML = '<div style="font-size:12px;font-weight:900;color:#fef08a;margin-bottom:6px;">📡 Live-TV Streams</div><div style="display:flex;gap:6px;"><a class="pill-mini btn-gold tap" href="https://ardmediathek.de" target="_blank">ARD Live</a><a class="pill-mini btn-silver tap" href="https://zdf.de" target="_blank">ZDF Live</a><a class="pill-mini btn-gold tap" href="https://joyn.de" target="_blank">Joyn TV</a></div>'; } }
+    const VOUCHERS = [{ id: 'v1', title: '🍽️ Candle-Light Dinner', desc: 'Wunsch-Restaurant deiner Wahl – alles inklusive.', cls: 'btn-gold' }, { id: 'v2', title: '💆‍♀️ Wellness & Spa', desc: 'Ein ganzer Tag Entspannung & Verwöhnprogramm.', cls: 'btn-silver' }, { id: 'v3', title: '🛍️ Shopping-Überraschung', desc: 'VIP-Shopping-Tour inklusive Wunsch-Teil.', cls: 'btn-silver' }, { id: 'v4', title: '🥐 Frühstück ans Bett', desc: 'Deluxe-Frühstück mit allem, was du liebst.', cls: 'btn-gold' }];
+    const DAYS_14 = 14 * 24 * 60 * 60 * 1000;
+    function renderVouchers() { const saved = JSON.parse(localStorage.getItem('maureen_vouchers') || '{}'); const now = Date.now(); let changed = false; VOUCHERS.forEach(v => { if (saved[v.id] && (now - saved[v.id].ts >= DAYS_14)) { delete saved[v.id]; changed = true; } }); if (changed) localStorage.setItem('maureen_vouchers', JSON.stringify(saved)); document.getElementById('voucherGrid').innerHTML = VOUCHERS.map(v => { const entry = saved[v.id]; if (entry) { const restTage = Math.max(1, Math.ceil((DAYS_14 - (now - entry.ts)) / (24 * 60 * 60 * 1000))); return `<div class="v-card"><h4>${v.title}</h4><p>Eingelöst am ${entry.date} • Neu in <b>${restTage} T.</b></p><button class="v-btn btn-silver" style="opacity:0.7;">✅ Aktiviert</button></div>`; } return `<div class="v-card"><h4>${v.title}</h4><p>${v.desc}</p><button class="v-btn ${v.cls} tap" onclick="redeemVoucher('${v.id}')">Jetzt einlösen</button></div>`; }).join(''); }
+    function redeemVoucher(id) { const saved = JSON.parse(localStorage.getItem('maureen_vouchers') || '{}'); saved[id] = { ts: Date.now(), date: new Date().toLocaleDateString('de-DE') }; localStorage.setItem('maureen_vouchers', JSON.stringify(saved)); renderVouchers(); }
+    renderVouchers();
+    function autoStartBeat() { if (firstTapDone) return; firstTapDone = true; toggleBeat(true); }
+    function toggleBeat(forceOn) { beatOn = forceOn !== undefined ? forceOn : !beatOn; document.getElementById('beatBtn').textContent = beatOn ? '⏸️ 90s' : '▶️ 90s'; document.getElementById('eqBars').classList.toggle('on', beatOn); if (beatOn) { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); clearInterval(beatTimer); beatTimer = setInterval(() => { const t = audioCtx.currentTime; const o = audioCtx.createOscillator(), g = audioCtx.createGain(); if (step % 4 === 0 || step % 4 === 2) { o.frequency.setValueAtTime(135, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.14); g.gain.setValueAtTime(0.28, t); } else { o.type = 'triangle'; o.frequency.setValueAtTime(240, t); o.frequency.exponentialRampToValueAtTime(90, t + 0.1); g.gain.setValueAtTime(0.16, t); } g.gain.exponentialRampToValueAtTime(0.001, t + 0.16); o.connect(g); g.connect(audioCtx.destination); o.start(t); o.stop(t + 0.16); step++; }, 260); } else { clearInterval(beatTimer); } }
+    function playRadio(btn, url) { const a = document.getElementById('radioAudio'); const was = btn.classList.contains('on'); document.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('on')); if (was) { a.pause(); return; } btn.classList.add('on'); a.src = url; a.play().catch(()=>{}); }
+    let items = JSON.parse(localStorage.getItem('maureen_list') || '[{"t":"Lieblingsparfüm","q":1},{"t":"Prosecco","q":2}]');
+    function renderList() { localStorage.setItem('maureen_list', JSON.stringify(items)); document.getElementById('listBox').innerHTML = items.map((it, i) => `<div class="list-row"><span><b>${it.q}x</b> ${it.t}</span><button class="pill-mini btn-silver tap" onclick="items.splice(${i},1);renderList()">✕</button></div>`).join(''); }
+    function addItem() { const t = document.getElementById('itemTxt').value.trim(); const q = document.getElementById('itemQty').value || 1; if (!t) return; items.push({t, q}); document.getElementById('itemTxt').value = ''; renderList(); }
+    renderList();
+  </script>
+</body>
+</html>
